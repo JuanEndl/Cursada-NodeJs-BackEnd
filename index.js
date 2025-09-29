@@ -88,10 +88,10 @@ const valor = process.argv[3];  // segundo argumento
 
 switch (accion) {
     case "mostrarTodo":
-        mostrarProductos(); //primer argumento
+        mostrarProductos(); // ejemplo primer argumento
         break;
     case "mostrar":
-        mostrarProducto(valor); // segundo argumento
+        mostrarProducto(valor); // ejemplo segundo argumento
         break;
     case "agregar":
         agregarProducto({
