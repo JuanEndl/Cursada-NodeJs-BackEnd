@@ -1,5 +1,3 @@
-
-
 // obterner todos los pruductos
 async function mostrarProductos() {
     try{
@@ -17,9 +15,9 @@ async function mostrarProductos() {
 
 
 // obterner solo un pruducto
-async function mostrarProducto() {
+async function mostrarProducto(id) {
     try{
-        const respuesta = await fetch("https://fakestoreapi.com/products/1",{
+        const respuesta = await fetch(`https://fakestoreapi.com/products/${id}`,{
             method: "GET"
         })
 
@@ -85,22 +83,34 @@ async function eliminarProducto(id) {
     }
 }
 
-// mostrarProductos()
-// mostrarProducto()
-/*agregarProducto({
-    "id": 21,
-    "title": "Prueba",
-    "price": 1000,
-    "description": "pruebaProducto",
-    "category": "string",
-    "image": "http://example.com"
-})*/
-actualizarProducto({
-    "id": 4,
-    "title": "Prueba",
-    "price": 1001,
-    "description": "pruebaProducto",
-    "category": "string",
-    "image": "http://example.com"
-})
-//eliminarProducto(5)
+const accion = process.argv[2]; // primer argumento después del archivo
+const valor = process.argv[3];  // segundo argumento
+
+switch (accion) {
+    case "mostrarTodo":
+        mostrarProductos();
+        break;
+    case "mostrar":
+        mostrarProducto(valor);
+        break;
+    case "agregar":
+        agregarProducto({
+            title: "Prueba Producto agregar",
+            price: 500,
+            description: "Agregado"
+        });
+        break;
+    case "actualizar":
+        actualizarProducto({
+            id: valor,
+            title: "Prueba Producto actualizado",
+            price: 600,
+            description: "Actualizado"
+        });
+        break;
+    case "eliminar":
+        eliminarProducto(valor);
+        break;
+    default:
+        console.log("Error en la consulta");
+}
